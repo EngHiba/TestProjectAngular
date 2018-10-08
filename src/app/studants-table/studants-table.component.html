@@ -1,0 +1,32 @@
+
+<div  class="tableContenet">
+<table class="table">
+  <thead>
+  <tr>
+  <th scope="col">
+    First Name
+  </th>
+  <th scope="col">
+    Last Name
+  </th>
+  <th scope="col">
+    Middle Name
+  </th>
+    <th scope="col">
+    </th>
+    <th scope="col">
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let stu of studentsList" (click)="setRowId(stu.Id)" [class.active]="stu.Id == selectedRowId">
+    <td scope="row">{{stu.Person.FirstName}}</td>
+    <td scope="row">{{stu.Person.LastName}}</td>
+    <td scope="row">{{stu.Person.MiddelName}}</td>
+    <td scope="row"><a [routerLink]="['/Student' , stu.Id]">Edit</a></td>
+    <td scope="row"><a routerLink='' (click)="deleteStudent(stu.Id)">Delete</a></td>
+  </tr>
+  </tbody>
+</table>
+  <a [routerLink]="['/Student' , -1]">+ Add New Student</a>
+</div>

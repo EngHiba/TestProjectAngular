@@ -1,0 +1,46 @@
+
+<div class="form-group">
+  <label for="FirstName"> First Name:</label>
+  <input name="FirstName" id="FirstName"  class="form-control" ngModel #FirstName ="ngModel" required />
+</div>
+
+<div class="form-group">
+  <label for="LastName"> Last Name:</label>
+  <input name="LastName" id="LastName" class="form-control" ngModel #LastName ="ngModel" required />
+</div>
+
+<div class="form-group">
+  <label for="MiddleName"> Middle Name:</label>
+  <input name="MiddelName" id="MiddleName" class="form-control" ngModel #MiddelName="ngModel" required />
+</div>
+
+<div class="form-group">
+  <label for="BirthDate"> Birth Date:</label>
+  <input name="BirthDate" id="BirthDate" class="form-control" [ngModel] = "BirthDate | date:'yyyy-MM-dd'"
+         (ngModelChange)="person.BirthDate = $event"
+         type="date" required />
+</div>
+
+
+<div class="form-group">
+  <label for="Nationality"> Nationality:</label>
+  <select name="NationaityId" id="Nationality" class="form-control" [(ngModel)] = NationaityId  required >
+    <option *ngFor="let nationality of nationltyList" [value]="nationality.Id" >
+      {{nationality.Title}}
+    </option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label class="form-check-inline">
+    <input class="form-check-input" type="radio" name="gender" [value]="genderList[0].Id" [checked]="GenderId === 1"
+           (change)="onGenderSelectionChange(1)">
+    {{genderList[0].Title}}
+  </label>
+  <label class="form-check-inline">
+    <input class="form-check-input" type="radio" name="gender" [value]="genderList[1].Id" [checked]="GenderId === 0"
+           (change)="onGenderSelectionChange(0)">
+    {{genderList[1].Title}}
+  </label>
+  <div class="alert alert-danger" *ngIf="!FirstName.valid || !LastName.valid || !MiddelName.valid">All Fields Are Required</div>
+</div>

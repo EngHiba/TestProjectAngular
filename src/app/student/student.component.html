@@ -1,0 +1,113 @@
+
+<form [formGroup] = "form"  (ngSubmit) = "submit()"  class="FormContent">
+
+  <div class="form-group">
+    <label for="FirstName"> First Name:</label>
+    <input formControlName="FirstName" id="FirstName"  class="form-control" [(ngModel)]= Person.FirstName   />
+    <div *ngIf="_FirstName.touched && _FirstName.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="LastName"> Last Name:</label>
+    <input formControlName="LastName" id="LastName" class="form-control" [(ngModel)]= Person.LastName   />
+    <div *ngIf="_LastName.touched && _LastName.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="MiddleName"> Middle Name:</label>
+    <input formControlName="MiddleName" id="MiddleName" class="form-control" [(ngModel)] = Person.MiddelName  />
+    <div *ngIf="_MiddleName.touched && _MiddleName.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="IdentityNo"> Identity Id:</label>
+    <input formControlName="IdentityNo" id="IdentityNo" class="form-control" [(ngModel)] = Person.IdentityNo required />
+    <div *ngIf="_IdentityNo.touched && _IdentityNo.invalid" class="alert alert-danger">All Fields Are Required</div>
+
+  </div>
+
+
+  <div class="form-group">
+    <label for="BirthDate"> Birth Date:</label>
+    <input formControlName="BirthDate" id="BirthDate" class="form-control" [ngModel] = "Person.BirthDate | date:'yyyy-MM-dd'"
+           (ngModelChange)="Person.BirthDate = $event"
+           type="date" required />
+    <div *ngIf="_BirthDate.touched && _BirthDate.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="Nationality"> Nationality:</label>
+    <select formControlName="Nationality" id="Nationality" class="form-control" [(ngModel)] = Person.NationalityId  required >
+      <option *ngFor="let nationality of Person.nationltyList" [value]="nationality.Id" >
+        {{nationality.Title}}
+      </option>
+    </select>
+    <div *ngIf="_Nationality.touched && _Nationality.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label class="form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" [value]="Person.genderList[0].Id" [checked]="Person.GenderId === 1"
+             (change)="Person.onGenderSelectionChange(1)">
+      {{Person.genderList[0].Title}}
+    </label>
+    <label class="form-check-inline">
+      <input class="form-check-input" type="radio" name="gender" [value]="Person.genderList[1].Id" [checked]="Person.GenderId === 0"
+             (change)="Person.onGenderSelectionChange(0)">
+      {{Person.genderList[1].Title}}
+    </label>
+  </div>
+
+<hr/>
+
+  <div class="form-group">
+    <label for="Department"> Department:</label>
+    <select formControlName="Department" id="Department" class="form-control"
+            [(ngModel)] = DepartmentId
+            (change)="updateYearList()"
+            required >
+      <option *ngFor="let department of departmentList" [value]="department.Id" >
+        {{department.Title}}
+      </option>
+    </select>
+    <div *ngIf="_Department.touched && _Department.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="Year"> Year:</label>
+    <select formControlName="Year" id="Year" class="form-control" [(ngModel)] = YearId  required >
+      <option *ngFor="let Year of yearsList" [value]="Year.Id" >
+        {{Year.Title}}
+      </option>
+    </select>
+    <div *ngIf="_Year.touched && _Year.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="Address"> Address:</label>
+    <input formControlName="Address" id="Address" class="form-control" [(ngModel)] = Address required />
+    <div *ngIf="_Address.touched && _Address.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="Mobile"> Mobile:</label>
+    <input formControlName="Mobile" id="Mobile" class="form-control" [(ngModel)] = Mobile />
+    <div *ngIf="_Mobile.touched && _Mobile.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="Phone"> Phone:</label>
+    <input formControlName="Phone" id="Phone" class="form-control" [(ngModel)] = "Phone" required />
+    <div *ngIf="_Phone.touched && _Phone.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+
+  <div class="form-group">
+    <label for="Email"> Email:</label>
+    <input formControlName="Email" id="Email" class="form-control" [(ngModel)] = "Email" required />
+    <div *ngIf="_Email.touched && _Email.invalid" class="alert alert-danger">All Fields Are Required</div>
+  </div>
+<button class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+</form>
+

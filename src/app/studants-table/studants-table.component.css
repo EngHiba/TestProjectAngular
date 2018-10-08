@@ -1,0 +1,11 @@
+.tableContenet{
+  padding-left: 200px;
+  padding-right: 200px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.table tr.active td {
+  background-color: cornflowerblue;
+  color: white;
+}
